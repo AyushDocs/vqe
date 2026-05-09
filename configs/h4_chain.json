@@ -1,0 +1,18 @@
+{
+    "name": "Hydrogen Chain (H4)",
+    "geometry": [
+        ["H", [0.0, 0.0, 0.0]],
+        ["H", [0.735, 0.0, 0.0]],
+        ["H", [1.47, 0.0, 0.0]],
+        ["H", [2.205, 0.0, 0.0]]
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "basis": "sto3g",
+    "method": "HF",
+    "description": "Linear H4 chain - tests scalability",
+    "expected_energy": -2.0,
+    "num_electrons": 4,
+    "num_spin_orbitals": 8,
+    "notes": "Useful for testing near-term hardware performance"
+}

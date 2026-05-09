@@ -1,0 +1,21 @@
+"""Molecule configurations for VQE simulations."""
+
+{
+    "name": "Hydrogen (H2)",
+    "geometry": [
+        ["H", [0.0, 0.0, 0.0]],
+        ["H", [0.735, 0.0, 0.0]]
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "basis": "sto3g",
+    "method": "HF",
+    "description": "H2 molecule at equilibrium bond distance (0.735 Angstrom)",
+    "expected_energy": -1.137,
+    "num_electrons": 2,
+    "num_spin_orbitals": 4,
+    "references": {
+        "equilibrium_distance": "https://doi.org/10.1063/1.1740378",
+        "ground_state_energy": "https://doi.org/10.1103/PhysRev.136.B864"
+    }
+}

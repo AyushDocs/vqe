@@ -1,0 +1,20 @@
+{
+    "name": "Water (H2O)",
+    "geometry": [
+        ["O", [0.0, 0.0, 0.0]],
+        ["H", [0.957, 0.0, 0.0]],
+        ["H", [0.0, 0.957, 0.0]]
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "basis": "sto3g",
+    "method": "HF",
+    "description": "Water molecule - larger system for scalability testing",
+    "expected_energy": -75.0,
+    "num_electrons": 10,
+    "num_spin_orbitals": 14,
+    "references": {
+        "ground_state_energy": "https://www.nature.com/articles/s41534-017-0037-3"
+    },
+    "notes": "Requires more qubits and deeper circuits"
+}

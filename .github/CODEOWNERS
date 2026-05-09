@@ -1,0 +1,13 @@
+# CODEOWNERS
+
+# Default owner for everything
+* @your-username
+
+# Documentation
+docs/** @your-username
+
+# CI/CD
+.github/** @your-username
+
+# Core package
+src/vqe_h2/** @your-username

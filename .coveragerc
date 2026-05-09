@@ -1,0 +1,15 @@
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.cache/
+__pycache__/
+*.pyc
+.env
+.env.local
+.venv/
+venv/
+*.ipynb_checkpoints/
+.ipynb
+docs/_build/

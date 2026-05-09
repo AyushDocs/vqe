@@ -1,0 +1,17 @@
+{
+    "name": "BeH2 - Beryllium Hydride",
+    "geometry": [
+        ["Be", [0.0, 0.0, 0.0]],
+        ["H", [1.3, 0.0, 0.0]],
+        ["H", [-1.3, 0.0, 0.0]]
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "basis": "sto3g",
+    "method": "HF",
+    "description": "BeH2 linear molecule",
+    "expected_energy": -15.2,
+    "num_electrons": 6,
+    "num_spin_orbitals": 14,
+    "notes": "Tests 3-atom linear molecule capabilities"
+}

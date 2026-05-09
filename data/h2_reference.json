@@ -1,0 +1,24 @@
+{
+    "molecule": "H2",
+    "basis": "sto3g",
+    "method": "Full CI",
+    "data": [
+        {"bond_distance": 0.5, "energy": -0.784, "source": "exact_diagonalization"},
+        {"bond_distance": 0.6, "energy": -0.976, "source": "exact_diagonalization"},
+        {"bond_distance": 0.7, "energy": -1.089, "source": "exact_diagonalization"},
+        {"bond_distance": 0.735, "energy": -1.137, "source": "exact_diagonalization"},
+        {"bond_distance": 0.8, "energy": -1.156, "source": "exact_diagonalization"},
+        {"bond_distance": 0.9, "energy": -1.147, "source": "exact_diagonalization"},
+        {"bond_distance": 1.0, "energy": -1.109, "source": "exact_diagonalization"},
+        {"bond_distance": 1.2, "energy": -1.001, "source": "exact_diagonalization"},
+        {"bond_distance": 1.4, "energy": -0.905, "source": "exact_diagonalization"},
+        {"bond_distance": 1.6, "energy": -0.834, "source": "exact_diagonalization"}
+    ],
+    "metadata": {
+        "units": "Hartree",
+        "equilibrium_distance": 0.735,
+        "dissociation_energy": 0.373,
+        "vibrational_frequency": 0.014,
+        "reference": "https://doi.org/10.1063/1.1740378"
+    }
+}

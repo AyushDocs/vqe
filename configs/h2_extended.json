@@ -1,0 +1,16 @@
+{
+    "name": "Hydrogen (H2) - Bond Scan",
+    "geometry": [
+        ["H", [0.0, 0.0, 0.0]],
+        ["H", [1.4, 0.0, 0.0]]
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "basis": "sto3g",
+    "method": "HF",
+    "description": "H2 molecule at extended bond distance for potential energy surface",
+    "expected_energy": -0.95,
+    "num_electrons": 2,
+    "num_spin_orbitals": 4,
+    "notes": "Use for creating potential energy surface plots"
+}

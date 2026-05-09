@@ -1,0 +1,19 @@
+{
+    "name": "Lithium Hydride (LiH)",
+    "geometry": [
+        ["Li", [0.0, 0.0, 0.0]],
+        ["H", [1.6, 0.0, 0.0]]
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "basis": "sto3g",
+    "method": "HF",
+    "description": "LiH molecule - 4 qubit system with more electrons",
+    "expected_energy": -8.02,
+    "num_electrons": 4,
+    "num_spin_orbitals": 12,
+    "references": {
+        "ground_state_energy": "https://arxiv.org/abs/1804.03026"
+    },
+    "notes": "More challenging due to larger Hilbert space"
+}
