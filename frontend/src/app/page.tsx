@@ -94,9 +94,7 @@ export default function Home() {
 
   return (
     <div className="container">
-      <section className="hero" style={{ paddingBottom: '24px' }}>
-        <h1 className="hero-title">Quantum Chemistry in Your Browser</h1>
-      </section>
+
 
       <div style={{
         display: 'grid',
@@ -279,6 +277,25 @@ export default function Home() {
                 <option value="SPSA">SPSA - Stochastic</option>
                 <option value="LBFGSB">L-BFGS-B - Gradient-based</option>
               </select>
+              <div style={{
+                marginTop: '8px',
+                padding: '8px 10px',
+                background: 'var(--bg-secondary)',
+                borderRadius: '6px',
+                fontSize: '12px',
+                color: 'var(--text-secondary)',
+                lineHeight: 1.5
+              }}>
+                {optimizer === 'COBYLA' && (
+                  <>Constrained Optimization by Linear Approximations. <strong>Derivative-free</strong> — builds a linear approximation of the objective function. Robust for noisy quantum landscapes, converges reliably but may require more iterations.</>
+                )}
+                {optimizer === 'SPSA' && (
+                  <>Simultaneous Perturbation Stochastic Approximation. <strong>Stochastic</strong> — estimates gradients using only two function evaluations per step regardless of parameter count. Designed for noisy environments like quantum hardware.</>
+                )}
+                {optimizer === 'LBFGSB' && (
+                  <>Limited-memory BFGS with Bounds. <strong>Gradient-based</strong> — approximates the Hessian using past gradient information. Fast convergence for smooth landscapes but sensitive to noise and requires gradient estimation.</>
+                )}
+              </div>
             </div>
 
             <div className="form-group">
