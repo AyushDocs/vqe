@@ -41,7 +41,7 @@ export default function EnergyChart({ data, exactEnergy }: EnergyChartProps) {
           <span style={{ color: 'var(--text-secondary)' }}>VQE Energy</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <div style={{ width: '12px', height: '3px', background: 'var(--accent-red)', borderRadius: '2px', borderStyle: 'dashed', borderWidth: '1px', background: 'transparent', borderColor: 'var(--accent-red)' }} />
+          <div style={{ width: '12px', height: '3px', borderRadius: '2px', borderStyle: 'dashed', borderWidth: '1px', background: 'transparent', borderColor: 'var(--accent-red)' }} />
           <span style={{ color: 'var(--text-secondary)' }}>Exact</span>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { runVQE } from '@/lib/vqe-engine'
+import { runVQE, runDissociationCurve, runNoiseScan, getExcitedStates } from '@/lib/vqe-engine'
 
 const referenceData: Record<string, { distance: number; energy: number }[]> = {
   h2: [
@@ -26,19 +26,6 @@ const referenceData: Record<string, { distance: number; energy: number }[]> = {
   ]
 }
 
-function getReferenceEnergy(bondDistance: number, molecule: string): number {
-  const ref = referenceData[molecule] || referenceData.h2
-
-  let closest = ref[0]
-  for (const point of ref) {
-    if (Math.abs(point.distance - bondDistance) < Math.abs(closest.distance - bondDistance)) {
-      closest = point
-    }
-  }
-
-  return closest.energy
-}
-
 function interpolateEnergy(distance: number, points: { distance: number; energy: number }[]): number {
   const sorted = [...points].sort((a, b) => a.distance - b.distance)
 
@@ -58,20 +45,63 @@ function interpolateEnergy(distance: number, points: { distance: number; energy:
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { molecule, bondDistance, maxIterations, optimizer } = body
+    const { molecule, bondDistance, maxIterations, optimizer, useAdapt, noiseShots, curveMode, curveDistances, excitedStates } = body
 
-    if (!molecule || bondDistance === undefined) {
+    if (!molecule) {
       return NextResponse.json(
-        { error: 'Missing required fields: molecule, bondDistance' },
+        { error: 'Missing required field: molecule' },
         { status: 400 }
       )
+    }
+
+    if (noiseShots === -1) {
+      const noiseScan = runNoiseScan({
+        molecule,
+        bondDistance,
+        maxIterations: maxIterations || 100,
+        optimizer: optimizer || 'cobyla',
+        useAdapt
+      })
+      return NextResponse.json({
+        success: true,
+        data: {
+          noiseScan,
+          molecule,
+          bondDistance,
+          basis: 'sto3g',
+          timestamp: new Date().toISOString()
+        }
+      })
+    }
+
+    if (curveMode && curveDistances) {
+      const curve = runDissociationCurve({
+        molecule,
+        bondDistance: bondDistance || 0.735,
+        maxIterations: maxIterations || 100,
+        optimizer: optimizer || 'cobyla',
+        curveDistances,
+        useAdapt
+      })
+      return NextResponse.json({
+        success: true,
+        data: {
+          curve,
+          molecule,
+          basis: 'sto3g',
+          useAdapt: !!useAdapt,
+          timestamp: new Date().toISOString()
+        }
+      })
     }
 
     const result = runVQE({
       molecule,
       bondDistance,
       maxIterations: maxIterations || 100,
-      optimizer: optimizer || 'cobyla'
+      optimizer: optimizer || 'cobyla',
+      useAdapt,
+      noiseShots
     })
 
     const refEnergy = interpolateEnergy(
@@ -79,7 +109,7 @@ export async function POST(request: Request) {
       referenceData[molecule] || referenceData.h2
     )
 
-    return NextResponse.json({
+    const response: any = {
       success: true,
       data: {
         vqeEnergy: result.energy,
@@ -90,9 +120,19 @@ export async function POST(request: Request) {
         molecule,
         bondDistance,
         basis: 'sto3g',
+        useAdapt: !!useAdapt,
+        noiseShots: result.noiseShots || null,
+        adaptParams: result.adaptParams || null,
+        uccsdParams: result.uccsdParams || null,
         timestamp: new Date().toISOString()
       }
-    })
+    }
+
+    if (excitedStates) {
+      response.data.excitedStates = getExcitedStates(molecule)
+    }
+
+    return NextResponse.json(response)
   } catch (error) {
     console.error('VQE API Error:', error)
     return NextResponse.json(
@@ -105,11 +145,9 @@ export async function POST(request: Request) {
 export async function GET() {
   return NextResponse.json({
     name: 'VQE API',
-    version: '1.0.0',
+    version: '2.0.0',
     endpoints: {
-      'POST /api/vqe': 'Run VQE calculation',
-      'GET /api/vqe/molecules': 'List available molecules',
-      'GET /api/vqe/reference': 'Get reference data'
+      'POST /api/vqe': 'Run VQE calculation (supports adapt, noise, curve, excited states)'
     }
   })
 }

@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![Frontend](https://img.shields.io/badge/Frontend-Next.js-black?style=for-the-badge)](https://vqe-demo.vercel.app)
-[![Quantum Computing](https://img.shields.io/badge/Quantum-VQE-blue?style=for-the-badge)
+![Frontend](https://img.shields.io/badge/Frontend-Next.js-black?style=for-the-badge)
+![Quantum Computing](https://img.shields.io/badge/Quantum-VQE-blue?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.9+-green?style=for-the-badge)
 ![Qiskit](https://img.shields.io/badge/Qiskit-Nature-purple?style=for-the-badge)
 
