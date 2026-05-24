@@ -47,7 +47,7 @@ scipy==1.17.1
 setuptools==82.0.1
 six==1.17.0
 snowballstemmer==3.0.1
-Sphinx==9.1.0
+Sphinx==8.1.3
 sphinxcontrib-applehelp==2.0.0
 sphinxcontrib-devhelp==2.0.0
 sphinxcontrib-htmlhelp==2.1.0
